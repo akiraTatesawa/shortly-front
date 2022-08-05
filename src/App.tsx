@@ -8,6 +8,7 @@ import { UserProvider } from "./contexts/UserContext";
 // Pages
 import RankingPage from "./pages/RankingPage";
 import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
 // Global Styles
 import GlobalStyles from "./styles/globalStyles";
 
@@ -22,6 +23,7 @@ function App() {
         <Routes>
           <Route path="/ranking" element={<RankingPage />} />
           <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/sign-up" element={<SignUpPage />} />
         </Routes>
       </UserProvider>
     </BrowserRouter>

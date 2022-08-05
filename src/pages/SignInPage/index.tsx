@@ -35,6 +35,7 @@ export default function SignInPage() {
 
       navigate("/ranking");
     } catch (error) {
+      setLoginData({ ...loginData, password: "" });
       console.log(error);
     }
 
