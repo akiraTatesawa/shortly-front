@@ -21,5 +21,9 @@ export const Button = styled.button.attrs((props: PropTypeCentered) => ({
     outline-offset: 2px;
   }
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
   border-radius: 12px;
 `;
