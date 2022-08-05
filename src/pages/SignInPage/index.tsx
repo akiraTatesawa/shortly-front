@@ -1,37 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
+// Types
+import { LoginType } from "../../@types";
+// Components
 import Input from "../../components/Input";
 import SubmitButton from "../../components/SubmitButton";
+// Contexts
+import { UserContext } from "../../contexts/UserContext";
+// API
+import { postLoginData } from "../../services/api";
+// Styles
 import { Container } from "./styles";
 
-type LoginType = {
-  email?: string;
-  password?: string;
-};
-
 export default function SignInPage() {
-  const [loginData, setLoginData] = useState<LoginType | null>();
+  const [loginData, setLoginData] = useState<LoginType | undefined>();
   const [isSendingLoginData, setIsSendingLoginData] = useState(false);
+  const userContext = useContext(UserContext);
+  const navigate = useNavigate();
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.target;
-
     setLoginData({ ...loginData, [name]: value });
   }
 
-  function sendLoginInfo(event: React.FormEvent<HTMLFormElement>) {
+  async function sendLoginInfo(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log(loginData);
-
     setIsSendingLoginData(true);
 
-    const promise = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(console.log("Resolved"));
-      }, 3000);
-    });
+    try {
+      const promise = await postLoginData(loginData);
 
-    promise.then(() => setIsSendingLoginData(false));
+      userContext?.setData(promise.data);
+
+      navigate("/ranking");
+    } catch (error) {
+      console.log(error);
+    }
+
+    setIsSendingLoginData(false);
   }
 
   return (
@@ -55,7 +62,11 @@ export default function SignInPage() {
           isDisabled={isSendingLoginData}
           required
         />
-        <SubmitButton title="Entrar" isCentered />
+        <SubmitButton
+          title="Entrar"
+          isCentered
+          isDisabled={isSendingLoginData}
+        />
       </Container>
     </main>
   );
