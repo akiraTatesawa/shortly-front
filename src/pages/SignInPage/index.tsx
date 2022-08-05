@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import Input from "../../components/Input";
+import SubmitButton from "../../components/SubmitButton";
 import { Container } from "./styles";
 
 type LoginType = {
@@ -54,7 +55,7 @@ export default function SignInPage() {
           isDisabled={isSendingLoginData}
           required
         />
-        <button type="submit">enviar</button>
+        <SubmitButton title="Entrar" isCentered />
       </Container>
     </main>
   );
