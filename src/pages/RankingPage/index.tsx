@@ -31,9 +31,11 @@ export default function RankingPage() {
         </RankingTitle>
 
         <RankingContainer>
-          <span>1. Fulaninha - 32 links - 100 visualizações</span>
-          <span>1. Fulaninha - 32 links - 100 visualizações</span>
-          <span>1. Fulaninha - 32 links - 100 visualizações</span>
+          <ul>
+            <li>1. Fulaninha - 32 links - 100 visualizações</li>
+            <li>1. Fulaninha - 32 links - 100 visualizações</li>
+            <li>1. Fulaninha - 32 links - 100 visualizações</li>
+          </ul>
         </RankingContainer>
 
         {message}
