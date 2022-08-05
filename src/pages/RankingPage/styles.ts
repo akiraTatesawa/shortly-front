@@ -1,10 +1,6 @@
 import { FaTrophy } from "react-icons/fa";
 import styled from "styled-components";
 
-export const Main = styled.main`
-  margin-top: 70px;
-`;
-
 export const Container = styled.section`
   display: flex;
   flex-direction: column;
