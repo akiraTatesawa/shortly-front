@@ -28,8 +28,13 @@ export default createGlobalStyle`
         list-style: none;
     }
 
+    main {
+        margin-top: 70px;
+    }
+
     :root {
         --surface-primary: #fff;
+        --surface-secondary: #f4f4f5;
         --text-primary: #27272a;
         --text-secondary: #9c9c9c;
 

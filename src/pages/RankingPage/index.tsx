@@ -5,7 +5,6 @@ import {
   RankingTitle,
   TrophyIcon,
   RankingContainer,
-  Main,
   Message,
 } from "./styles";
 
@@ -23,7 +22,7 @@ export default function RankingPage() {
   const message = renderMessage(isUserAuthenticated);
 
   return (
-    <Main>
+    <main>
       <Container>
         <RankingTitle>
           <TrophyIcon />
@@ -40,6 +39,6 @@ export default function RankingPage() {
 
         {message}
       </Container>
-    </Main>
+    </main>
   );
 }
