@@ -14,12 +14,27 @@ export const Container = styled.header`
 `;
 
 export const LoginSignUpLinks = styled.div`
-  align-self: flex-end;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+`;
+
+export const RightSide = styled.div`
+  span {
+    color: var(--brand);
+    line-height: 1.5em;
+    font-weight: 500;
+  }
+`;
+
+export const LeftSide = styled.div`
+  display: flex;
+  gap: 2rem;
 
   a {
     text-decoration: none;
     line-height: 1.5rem;
+    color: var(--text-secondary);
 
     &:hover {
       text-underline-offset: 2px;
@@ -27,13 +42,14 @@ export const LoginSignUpLinks = styled.div`
     }
   }
 
-  a:first-child {
-    margin-right: 2rem;
-    color: var(--brand);
+  a.logout {
+    color: var(--delete);
+    font-weight: 500;
   }
 
-  a:nth-child(2) {
-    color: var(--text-secondary);
+  a.login {
+    color: var(--brand);
+    font-weight: 500;
   }
 `;
 

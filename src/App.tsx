@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
-
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 // Components
