@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+// Types
 import { SignUpType } from "../../@types";
+// Components
 import Input from "../../components/Input";
 import SubmitButton from "../../components/SubmitButton";
+// API
 import { postSignUpData } from "../../services/api";
+// Styles
 import { Container } from "./styles";
 
 export default function SignUpPage() {

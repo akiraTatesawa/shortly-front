@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+// Types
 import { UserData } from "../../@types";
+// Context
 import { UserContext } from "../../contexts/UserContext";
+// Styles
 import {
   Container,
   LoginSignUpLinks,

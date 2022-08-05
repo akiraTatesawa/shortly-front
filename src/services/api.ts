@@ -13,3 +13,7 @@ export const postLoginData = async (loginData: LoginType | undefined) => {
 export const postSignUpData = async (signUpData: SignUpType | undefined) => {
   return api.post("/signup", signUpData);
 };
+
+export const getRanking = async () => {
+  return api.get("/ranking");
+};

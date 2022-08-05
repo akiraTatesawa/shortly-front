@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 
+// Types
 import { APIRanking } from "../../@types";
+// API
 import { api } from "../../services/api";
+// Styles
 import {
   Container,
   RankingTitle,
@@ -34,15 +37,17 @@ export default function RankingPage() {
   const [rankingData, setRankingData] = useState<RankingData>();
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
+  async function getRankingData() {
+    try {
+      const promise = await api.get("/ranking");
+      setRankingData(promise.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    api
-      .get("/ranking")
-      .then((response) => {
-        setRankingData(response.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getRankingData();
   }, []);
 
   function renderMessage(isUserAuthenticated: boolean) {
