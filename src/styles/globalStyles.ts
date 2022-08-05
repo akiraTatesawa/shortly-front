@@ -36,11 +36,14 @@ export default createGlobalStyle`
         --brand: #5d9040;
         --brand-hover: #8fbc6d;
         --brand-light: #80cc74;
-        --border: #78b159;
-        --delete: #ea4f4f;
+        --border: #c3e7a2;
         --text-on-brand: #fff;
 
-        width: 1020px;
+        --delete: #ea4f4f;
+        --trophy: #ffd233;
+
+        padding: 0 20px;
+        width: 1040px;
         margin: 0 auto;
     }
 `;
