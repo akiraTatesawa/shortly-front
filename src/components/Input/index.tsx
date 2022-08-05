@@ -13,9 +13,11 @@ export default function Input({
   type,
   placeholder,
   isDisabled,
+  value,
 }: InputProps) {
   return (
     <InputContainer
+      value={value}
       name={name}
       type={type}
       placeholder={placeholder}
@@ -23,6 +25,7 @@ export default function Input({
       required
       disabled={isDisabled}
       autoComplete="off"
+      maxLength={30}
     />
   );
 }
