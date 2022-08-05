@@ -39,5 +39,8 @@ export default createGlobalStyle`
         --border: #78b159;
         --delete: #ea4f4f;
         --text-on-brand: #fff;
+
+        width: 1020px;
+        margin: 0 auto;
     }
 `;
