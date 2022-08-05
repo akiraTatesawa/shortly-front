@@ -30,9 +30,6 @@ export const TrophyIcon = styled(FaTrophy)`
 `;
 
 export const RankingContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
   width: 100%;
   height: auto;
 
@@ -43,7 +40,13 @@ export const RankingContainer = styled.div`
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
   border-radius: 24px 24px 0px 0px;
 
-  span {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  li {
     font-size: 22px;
     font-weight: 500;
     line-height: 1.25em;
