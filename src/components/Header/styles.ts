@@ -4,7 +4,7 @@ import Logo from "../ShortlyLogo";
 
 export const Container = styled.header`
   width: 100%;
-  height: 224px;
+  height: 150px;
   margin-top: 60px;
   margin-bottom: 5px;
 
@@ -47,8 +47,6 @@ export const ShortlyLogo = styled.div`
     font-weight: 100;
     margin-right: 1rem;
   }
-
-  cursor: pointer;
 `;
 
 export const ShortsIcon = styled(Logo)`
