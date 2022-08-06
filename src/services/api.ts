@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { LoginType, SignUpType } from "../@types";
+import { Config, LoginType, SignUpType, Url } from "../@types";
 
 export const api = axios.create({
   baseURL: process.env.REACT_APP_API_BASE_URL,
@@ -16,4 +16,8 @@ export const postSignUpData = async (signUpData: SignUpType | undefined) => {
 
 export const getRanking = async () => {
   return api.get("/ranking");
+};
+
+export const postNewUrl = async (url: Url, config: Config) => {
+  return api.post("/urls/shorten", url, config);
 };

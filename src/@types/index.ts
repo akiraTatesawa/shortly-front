@@ -10,6 +10,10 @@ export type SignUpType = {
   confirmPassword?: string;
 };
 
+export type Url = {
+  url: string;
+};
+
 export interface APIRanking {
   id?: number;
   name: string;
@@ -20,6 +24,12 @@ export interface APIRanking {
 export interface RankingData {
   map(arg0: (e: APIRanking, index: number) => void): import("react").ReactNode;
   rankingData: APIRanking[];
+}
+
+export interface Config {
+  headers: {
+    authorization: string;
+  };
 }
 
 export interface UserData {

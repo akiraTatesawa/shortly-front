@@ -34,7 +34,7 @@ export default function SignInPage() {
       userContext?.setData(promise.data);
       localStorage.setItem("userData", JSON.stringify(promise.data));
 
-      navigate("/ranking");
+      navigate("/");
     } catch (error) {
       setLoginData({ ...loginData, password: "" });
       console.log(error);

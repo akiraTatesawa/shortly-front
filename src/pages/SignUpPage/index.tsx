@@ -48,6 +48,7 @@ export default function SignUpPage() {
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingSignUpData}
           required
+          maxLength={30}
         />
         <Input
           name="email"

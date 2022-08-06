@@ -18,6 +18,18 @@ export function deleteUserFromLocalStorage() {
   }
 }
 
+export function buildRequestConfig() {
+  const { token } = getUserDataFromLocalStorage();
+
+  const config = {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  };
+
+  return config;
+}
+
 export function handleLocation(
   isUserAuthenticated: boolean,
   navigate: NavigateFunction,
@@ -37,9 +49,11 @@ export function handleLocation(
     (route) => route[1] === location
   );
 
-  console.log(!isCurrentLocationValid || (isAuthRoute && isUserAuthenticated));
-
-  if (!isCurrentLocationValid || (isAuthRoute && isUserAuthenticated)) {
+  if (
+    !isCurrentLocationValid ||
+    (isAuthRoute && isUserAuthenticated) ||
+    !isUserAuthenticated
+  ) {
     navigate("/ranking");
   }
 }

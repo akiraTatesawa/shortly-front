@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
+import HomePage from "../../pages/HomePage";
 import RankingPage from "../../pages/RankingPage";
 import SignInPage from "../../pages/SignInPage";
 import SignUpPage from "../../pages/SignUpPage";
@@ -17,6 +18,7 @@ export default function RouterNavigator() {
 
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
       <Route path="/ranking" element={<RankingPage />} />
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/sign-up" element={<SignUpPage />} />
