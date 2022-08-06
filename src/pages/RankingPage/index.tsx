@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 
 // Types
-import { APIRanking } from "../../@types";
+import { RankingData } from "../../@types";
+import RankingList from "../../components/RankingList";
 // API
 import { api } from "../../services/api";
 // Styles
@@ -13,28 +14,8 @@ import {
   Message,
 } from "./styles";
 
-interface RankingData {
-  map(arg0: (e: APIRanking, index: number) => void): import("react").ReactNode;
-  data?: APIRanking[];
-}
-
-interface RankingItemProps extends APIRanking {
-  rankingPosition: number;
-}
-
-function RankingItem({
-  rankingPosition,
-  name,
-  linksCount,
-  visitCount,
-}: RankingItemProps) {
-  return (
-    <li>{`${rankingPosition}. ${name} - ${linksCount} links - ${visitCount} visualizações`}</li>
-  );
-}
-
 export default function RankingPage() {
-  const [rankingData, setRankingData] = useState<RankingData>();
+  const [rankingData, setRankingData] = useState<RankingData | undefined>();
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
   async function getRankingData() {
@@ -59,16 +40,9 @@ export default function RankingPage() {
 
   function renderRankingList(rankingData: RankingData | undefined) {
     if (rankingData) {
-      return rankingData.map((item, index) => (
-        <RankingItem
-          key={item.id}
-          rankingPosition={index + 1}
-          name={item.name}
-          linksCount={item.linksCount}
-          visitCount={item.visitCount}
-        />
-      ));
+      return <RankingList data={rankingData} />;
     }
+
     return "Loading...";
   }
 
@@ -83,9 +57,7 @@ export default function RankingPage() {
           <h2>Ranking</h2>
         </RankingTitle>
 
-        <RankingContainer>
-          <ul>{rankingList}</ul>
-        </RankingContainer>
+        <RankingContainer>{rankingList}</RankingContainer>
 
         {message}
       </Container>

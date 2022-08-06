@@ -17,12 +17,17 @@ export interface APIRanking {
   visitCount: string;
 }
 
+export interface RankingData {
+  map(arg0: (e: APIRanking, index: number) => void): import("react").ReactNode;
+  rankingData: APIRanking[];
+}
+
 export interface UserData {
   name: string | undefined;
   token: string | undefined;
 }
 
 export type UserDataContextType = {
-  userData: UserData | null;
+  userData: UserData | null | undefined;
   setData: (userData: UserData) => void;
 };

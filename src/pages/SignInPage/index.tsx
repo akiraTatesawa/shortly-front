@@ -32,6 +32,7 @@ export default function SignInPage() {
       const promise = await postLoginData(loginData);
 
       userContext?.setData(promise.data);
+      localStorage.setItem("userData", JSON.stringify(promise.data));
 
       navigate("/ranking");
     } catch (error) {
@@ -49,7 +50,7 @@ export default function SignInPage() {
           name="email"
           type="email"
           placeholder="email"
-          value={loginData?.email}
+          value={loginData?.email || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingLoginData}
           required
@@ -58,7 +59,7 @@ export default function SignInPage() {
           name="password"
           type="password"
           placeholder="senha"
-          value={loginData?.password}
+          value={loginData?.password || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingLoginData}
           required
