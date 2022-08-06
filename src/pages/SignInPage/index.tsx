@@ -32,6 +32,7 @@ export default function SignInPage() {
       const promise = await postLoginData(loginData);
 
       userContext?.setData(promise.data);
+      localStorage.setItem("userData", JSON.stringify(promise.data));
 
       navigate("/ranking");
     } catch (error) {

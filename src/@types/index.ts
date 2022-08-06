@@ -28,6 +28,6 @@ export interface UserData {
 }
 
 export type UserDataContextType = {
-  userData: UserData | null;
+  userData: UserData | null | undefined;
   setData: (userData: UserData) => void;
 };
