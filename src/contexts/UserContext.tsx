@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { UserData, UserDataContextType } from "../@types";
 import { getUserDataFromLocalStorage } from "../utils";
@@ -17,7 +16,6 @@ export function UserProvider({ children }: UserProviderProps) {
     name: undefined,
     token: undefined,
   });
-  const navigate = useNavigate();
 
   useEffect(() => {
     const localStorageUserData = getUserDataFromLocalStorage();
@@ -27,8 +25,6 @@ export function UserProvider({ children }: UserProviderProps) {
         name: localStorageUserData.name,
         token: localStorageUserData.token,
       });
-    } else {
-      navigate("/ranking");
     }
   }, []);
 

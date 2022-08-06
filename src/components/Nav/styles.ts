@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LoginSignUpLinks = styled.div`
+export const LoginSignUpLinks = styled.nav`
   width: 100%;
   display: flex;
   justify-content: space-between;
