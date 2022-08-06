@@ -5,6 +5,7 @@ import { RankingData } from "../../@types";
 import RankingList from "../../components/RankingList";
 // API
 import { api } from "../../services/api";
+import { getUserDataFromLocalStorage } from "../../utils";
 // Styles
 import {
   Container,
@@ -29,10 +30,12 @@ export default function RankingPage() {
 
   useEffect(() => {
     getRankingData();
+    const userData = getUserDataFromLocalStorage();
+    setIsUserAuthenticated(Boolean(userData));
   }, []);
 
   function renderMessage(isUserAuthenticated: boolean) {
-    if (isUserAuthenticated) {
+    if (!isUserAuthenticated) {
       return <Message>Crie sua conta para usar nosso serviço!</Message>;
     }
     return null;

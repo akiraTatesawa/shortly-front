@@ -40,7 +40,7 @@ export default function Nav() {
       <>
         <Link to="/home">Home</Link>
         <Link to="/ranking">Ranking</Link>
-        <Link to="/" className="logout" onClick={() => logOut()}>
+        <Link to="/home" className="logout" onClick={() => logOut()}>
           Sair
         </Link>
       </>
