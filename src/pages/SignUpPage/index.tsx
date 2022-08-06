@@ -44,7 +44,7 @@ export default function SignUpPage() {
           name="name"
           type="text"
           placeholder="nome"
-          value={signUpData?.name}
+          value={signUpData?.name || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingSignUpData}
           required
@@ -53,7 +53,7 @@ export default function SignUpPage() {
           name="email"
           type="email"
           placeholder="email"
-          value={signUpData?.email}
+          value={signUpData?.email || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingSignUpData}
           required
@@ -62,7 +62,7 @@ export default function SignUpPage() {
           name="password"
           type="password"
           placeholder="senha"
-          value={signUpData?.password}
+          value={signUpData?.password || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingSignUpData}
           required
@@ -71,7 +71,7 @@ export default function SignUpPage() {
           name="confirmPassword"
           type="password"
           placeholder="confirmar senha"
-          value={signUpData?.confirmPassword}
+          value={signUpData?.confirmPassword || ""}
           setValue={(event) => handleChange(event)}
           isDisabled={isSendingSignUpData}
           required

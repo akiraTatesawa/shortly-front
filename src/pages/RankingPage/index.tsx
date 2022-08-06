@@ -43,7 +43,6 @@ export default function RankingPage() {
       return <RankingList data={rankingData} />;
     }
 
-    console.log("ainda não carregou");
     return "Loading...";
   }
 
