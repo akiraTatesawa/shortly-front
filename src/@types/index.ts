@@ -15,7 +15,7 @@ export type Url = {
 };
 
 export interface APIUserUrlData {
-  id?: number;
+  id: number;
   url: string;
   shortUrl: string;
   visitCount: number;

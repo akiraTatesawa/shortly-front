@@ -40,9 +40,9 @@ export default function NewLinkForm({ reloadLinks }: NewLinkFromProps) {
       console.log(error);
     }
 
-    setIsSendingUrl(false);
     setUrl("");
     reloadLinks();
+    setIsSendingUrl(false);
   }
 
   return (

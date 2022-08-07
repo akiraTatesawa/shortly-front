@@ -1,6 +1,10 @@
 import { FaTrashAlt } from "react-icons/fa";
 import styled from "styled-components";
 
+type PropTypeIsDeleting = {
+  isDeleting: boolean;
+};
+
 export const Container = styled.ul`
   display: flex;
   flex-direction: column;
@@ -49,6 +53,10 @@ export const Container = styled.ul`
         width: 130px;
         height: 100%;
         background-color: var(--surface-primary);
+
+        &:disabled {
+          background-color: var(--surface-secondary);
+        }
       }
     }
 
@@ -62,9 +70,13 @@ export const Container = styled.ul`
   }
 `;
 
-export const DeleteIcon = styled(FaTrashAlt)`
+export const DeleteIcon = styled(FaTrashAlt).attrs(
+  ({ isDeleting }: PropTypeIsDeleting) => ({ $isDeleting: isDeleting })
+)`
   flex-shrink: 0;
   fill: var(--delete);
   width: 1.6rem;
   height: 1.6rem;
+
+  opacity: ${(props) => (props.$isDeleting ? "0.25" : "1")};
 `;

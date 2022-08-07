@@ -48,7 +48,10 @@ export default function HomePage() {
           <NewLinkForm reloadLinks={() => getUserData()} />
         </NewLinkSection>
         <UserLinksSection>
-          <UserLinks userLinksData={userAPIData?.shortenedUrls || []} />
+          <UserLinks
+            userLinksData={userAPIData?.shortenedUrls || []}
+            reloadLinks={() => getUserData()}
+          />
         </UserLinksSection>
       </Container>
     </main>
