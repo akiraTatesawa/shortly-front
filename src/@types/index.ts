@@ -14,6 +14,20 @@ export type Url = {
   url: string;
 };
 
+export interface APIUserUrlData {
+  id?: number;
+  url: string;
+  shortUrl: string;
+  visitCount: number;
+}
+
+export interface APIUserData {
+  id: number;
+  name: string;
+  visitedCount: number;
+  shortenedUrls: APIUserUrlData[];
+}
+
 export interface APIRanking {
   id?: number;
   name: string;
@@ -33,8 +47,8 @@ export interface Config {
 }
 
 export interface UserData {
-  name: string | undefined;
-  token: string | undefined;
+  name?: string | undefined;
+  token?: string | undefined;
 }
 
 export type UserDataContextType = {

@@ -10,7 +10,11 @@ import SubmitButton from "../SubmitButton";
 // Styles
 import { Form } from "./styles";
 
-export default function NewLinkForm() {
+interface NewLinkFromProps {
+  reloadLinks: () => void;
+}
+
+export default function NewLinkForm({ reloadLinks }: NewLinkFromProps) {
   const [url, setUrl] = useState("");
   const [isSendingUrl, setIsSendingUrl] = useState(false);
 
@@ -38,6 +42,7 @@ export default function NewLinkForm() {
 
     setIsSendingUrl(false);
     setUrl("");
+    reloadLinks();
   }
 
   return (

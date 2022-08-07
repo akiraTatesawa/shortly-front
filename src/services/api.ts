@@ -14,6 +14,10 @@ export const postSignUpData = async (signUpData: SignUpType | undefined) => {
   return api.post("/signup", signUpData);
 };
 
+export const getUserDataLinks = async (config: Config) => {
+  return api.get("/users/me", config);
+};
+
 export const getRanking = async () => {
   return api.get("/ranking");
 };
