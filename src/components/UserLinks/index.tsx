@@ -77,33 +77,30 @@ function LinkContainer({
   }
 
   return (
-    <>
-      <ToastContainer />
-      <li>
-        <div className="url">
-          <a href={url} target="_blank" rel="noreferrer">
-            {url}
-          </a>
-        </div>
-        <div className="short-url">
-          <Link
-            to={`/open/${shortUrl}`}
-          >{`${process.env.REACT_APP_CLIENT_URL}/open/${shortUrl}`}</Link>
-        </div>
-        <div>
-          <span className="visit-count">
-            Quantidade de visitantes: {visitCount}
-          </span>
-          <button
-            type="button"
-            onClick={handleDeleteUrl}
-            disabled={isDeletingUrl}
-          >
-            <DeleteIcon $isDeleting={isDeletingUrl} />
-          </button>
-        </div>
-      </li>
-    </>
+    <li>
+      <div className="url">
+        <a href={url} target="_blank" rel="noreferrer">
+          {url}
+        </a>
+      </div>
+      <div className="short-url">
+        <Link
+          to={`/open/${shortUrl}`}
+        >{`${process.env.REACT_APP_CLIENT_URL}/open/${shortUrl}`}</Link>
+      </div>
+      <div>
+        <span className="visit-count">
+          Quantidade de visitantes: {visitCount}
+        </span>
+        <button
+          type="button"
+          onClick={handleDeleteUrl}
+          disabled={isDeletingUrl}
+        >
+          <DeleteIcon $isDeleting={isDeletingUrl} />
+        </button>
+      </div>
+    </li>
   );
 }
 
