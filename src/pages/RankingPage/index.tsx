@@ -27,7 +27,7 @@ export default function RankingPage() {
       : "Erro interno. Tente novamente mais tarde";
 
     toast.error(errorMessage, {
-      toastId: 1,
+      toastId: 3,
       position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
