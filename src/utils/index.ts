@@ -52,7 +52,7 @@ export function handleLocation(
   if (
     !isCurrentLocationValid ||
     (isAuthRoute && isUserAuthenticated) ||
-    !isUserAuthenticated
+    (!isUserAuthenticated && !isAuthRoute)
   ) {
     navigate("/ranking");
   }

@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -20,8 +21,12 @@ export default function SignInPage() {
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
-  function errorNotify() {
-    toast.error("Email ou senha incorretos", {
+  function errorNotify(status: number | undefined) {
+    const errorMessage = status
+      ? "Email ou senha incorretos"
+      : "Erro interno. Tente novamente mais tarde";
+
+    toast.error(errorMessage, {
       toastId: 1,
       position: "top-center",
       autoClose: 5000,
@@ -55,8 +60,9 @@ export default function SignInPage() {
 
       navigate("/");
     } catch (error) {
+      const err = error as AxiosError;
       setLoginData({ ...loginData, password: "" });
-      errorNotify();
+      errorNotify(err.response?.status);
       console.log(error);
     }
 

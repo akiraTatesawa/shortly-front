@@ -1,5 +1,7 @@
+import { AxiosError } from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // Types
 import { SignUpType } from "../../@types";
@@ -16,6 +18,23 @@ export default function SignUpPage() {
   const [isSendingSignUpData, setIsSendingSignUpData] = useState(false);
   const navigate = useNavigate();
 
+  function errorNotify(status: number | undefined) {
+    const errorMessage = status
+      ? "Preencha os campos corretamente!"
+      : "Erro interno. Tente novamente mais tarde";
+
+    toast.error(errorMessage, {
+      toastId: 2,
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.target;
     setSignUpData({ ...signUpData, [name]: value });
@@ -27,11 +46,12 @@ export default function SignUpPage() {
 
     try {
       await postSignUpData(signUpData);
-
       navigate("/sign-in");
     } catch (error) {
+      const err = error as AxiosError;
       setSignUpData({ ...signUpData, password: "", confirmPassword: "" });
-      console.log(error);
+      errorNotify(err.response?.status);
+      console.log(err);
     }
 
     setIsSendingSignUpData(false);
@@ -39,6 +59,7 @@ export default function SignUpPage() {
 
   return (
     <main>
+      <ToastContainer />
       <Container onSubmit={(event) => sendSignUpInfo(event)}>
         <Input
           name="name"
