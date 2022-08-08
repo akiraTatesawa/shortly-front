@@ -21,7 +21,7 @@ export default function SignInPage() {
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
 
-  function errorNotify(status: number | undefined) {
+  function displayErrorNotify(status: number | undefined) {
     const errorMessage = status
       ? "Email ou senha incorretos"
       : "Erro interno. Tente novamente mais tarde";
@@ -62,7 +62,7 @@ export default function SignInPage() {
     } catch (error) {
       const err = error as AxiosError;
       setLoginData({ ...loginData, password: "" });
-      errorNotify(err.response?.status);
+      displayErrorNotify(err.response?.status);
       console.log(error);
     }
 

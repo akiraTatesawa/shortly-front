@@ -18,7 +18,7 @@ export default function SignUpPage() {
   const [isSendingSignUpData, setIsSendingSignUpData] = useState(false);
   const navigate = useNavigate();
 
-  function errorNotify(status: number | undefined) {
+  function displayErrorNotify(status: number | undefined) {
     const errorMessage = status
       ? "Preencha os campos corretamente!"
       : "Erro interno. Tente novamente mais tarde";
@@ -50,7 +50,7 @@ export default function SignUpPage() {
     } catch (error) {
       const err = error as AxiosError;
       setSignUpData({ ...signUpData, password: "", confirmPassword: "" });
-      errorNotify(err.response?.status);
+      displayErrorNotify(err.response?.status);
       console.log(err);
     }
 
