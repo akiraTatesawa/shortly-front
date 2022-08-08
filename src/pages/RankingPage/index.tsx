@@ -1,10 +1,12 @@
+import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 // Types
 import { RankingData } from "../../@types";
 import RankingList from "../../components/RankingList";
 // API
-import { api } from "../../services/api";
+import { getRanking } from "../../services/api";
 import { getUserDataFromLocalStorage } from "../../utils";
 // Styles
 import {
@@ -19,11 +21,30 @@ export default function RankingPage() {
   const [rankingData, setRankingData] = useState<RankingData | undefined>();
   const [isUserAuthenticated, setIsUserAuthenticated] = useState(false);
 
+  function displayErrorNotify(status: number | undefined) {
+    const errorMessage = status
+      ? "Não foi possível obter o ranking"
+      : "Erro interno. Tente novamente mais tarde";
+
+    toast.error(errorMessage, {
+      toastId: 1,
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
   async function getRankingData() {
     try {
-      const promise = await api.get("/ranking");
+      const promise = await getRanking();
       setRankingData(promise.data);
     } catch (error) {
+      const err = error as AxiosError;
+      displayErrorNotify(err.response?.status);
       console.log(error);
     }
   }
@@ -54,6 +75,7 @@ export default function RankingPage() {
 
   return (
     <main>
+      <ToastContainer />
       <Container>
         <RankingTitle>
           <TrophyIcon />
