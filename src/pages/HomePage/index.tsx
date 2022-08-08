@@ -1,4 +1,7 @@
+import { AxiosError } from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // Types
 import { APIUserData } from "../../@types";
@@ -10,13 +13,34 @@ import { UserContext } from "../../contexts/UserContext";
 // API
 import { getUserDataLinks } from "../../services/api";
 /// Utils
-import { buildRequestConfig, getUserDataFromLocalStorage } from "../../utils";
+import {
+  buildRequestConfig,
+  deleteUserFromLocalStorage,
+  getUserDataFromLocalStorage,
+} from "../../utils";
 // Styles
 import { Container, NewLinkSection, UserLinksSection } from "./styles";
 
 export default function HomePage() {
   const userContextData = useContext(UserContext);
   const [userAPIData, setUserAPIData] = useState<APIUserData>();
+  const navigate = useNavigate();
+
+  function displayErrorNotify(status: number | undefined) {
+    const errorMessage = status
+      ? "Sua sessão expirou! Faça login novamente"
+      : "Erro interno. Tente novamente mais tarde";
+    toast.error(errorMessage, {
+      toastId: 4,
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   async function getUserData() {
     const config = buildRequestConfig();
@@ -33,6 +57,16 @@ export default function HomePage() {
       localStorage.setItem("userData", JSON.stringify(updatedUser));
       userContextData?.setData(updatedUser);
     } catch (error) {
+      const err = error as AxiosError;
+
+      displayErrorNotify(err.response?.status);
+
+      if (err.response?.status === 401 || err.response?.status === 500) {
+        deleteUserFromLocalStorage();
+        userContextData?.setData({ name: undefined, token: undefined });
+
+        setTimeout(() => navigate("/ranking"), 2000);
+      }
       console.log(error);
     }
   }
@@ -43,6 +77,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <ToastContainer />
       <Container>
         <NewLinkSection>
           <NewLinkForm reloadLinks={() => getUserData()} />

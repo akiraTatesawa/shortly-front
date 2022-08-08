@@ -1,5 +1,7 @@
+import { AxiosError } from "axios";
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // Types
 import { LoginType } from "../../@types";
@@ -18,6 +20,23 @@ export default function SignInPage() {
   const [isSendingLoginData, setIsSendingLoginData] = useState(false);
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
+
+  function displayErrorNotify(status: number | undefined) {
+    const errorMessage = status
+      ? "Email ou senha incorretos"
+      : "Erro interno. Tente novamente mais tarde";
+
+    toast.error(errorMessage, {
+      toastId: 1,
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.target;
@@ -41,7 +60,9 @@ export default function SignInPage() {
 
       navigate("/");
     } catch (error) {
+      const err = error as AxiosError;
       setLoginData({ ...loginData, password: "" });
+      displayErrorNotify(err.response?.status);
       console.log(error);
     }
 
@@ -50,6 +71,7 @@ export default function SignInPage() {
 
   return (
     <main>
+      <ToastContainer />
       <Container onSubmit={(event) => sendLoginInfo(event)}>
         <Input
           name="email"

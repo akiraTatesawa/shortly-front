@@ -46,14 +46,22 @@ export function handleLocation(
 
   const isAuthRoute = location === routes.signup || location === routes.signin;
   const isCurrentLocationValid = routesArray.some(
-    (route) => route[1] === location || location.startsWith("/open/")
+    (route) => route[1] === location
   );
+
+  let redirectUrl: string = location;
 
   if (
     !isCurrentLocationValid ||
     (isAuthRoute && isUserAuthenticated) ||
-    !isUserAuthenticated
+    (!isUserAuthenticated && !isAuthRoute)
   ) {
-    navigate("/ranking");
+    redirectUrl = "/ranking";
   }
+
+  if (location.startsWith("/open/")) {
+    redirectUrl = location;
+  }
+
+  navigate(redirectUrl);
 }
