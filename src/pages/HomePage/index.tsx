@@ -1,5 +1,6 @@
 import { AxiosError } from "axios";
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
 // Types
@@ -23,6 +24,7 @@ import { Container, NewLinkSection, UserLinksSection } from "./styles";
 export default function HomePage() {
   const userContextData = useContext(UserContext);
   const [userAPIData, setUserAPIData] = useState<APIUserData>();
+  const navigate = useNavigate();
 
   function displayErrorNotify(status: number | undefined) {
     const errorMessage = status
@@ -59,9 +61,12 @@ export default function HomePage() {
 
       displayErrorNotify(err.response?.status);
 
-      deleteUserFromLocalStorage();
-      userContextData?.setData({ name: undefined, token: undefined });
+      if (err.response?.status === 401 || err.response?.status === 500) {
+        deleteUserFromLocalStorage();
+        userContextData?.setData({ name: undefined, token: undefined });
 
+        setTimeout(() => navigate("/ranking"), 2000);
+      }
       console.log(error);
     }
   }
