@@ -25,7 +25,6 @@ export default function Input({
       required
       disabled={isDisabled}
       autoComplete="off"
-      maxLength={30}
     />
   );
 }

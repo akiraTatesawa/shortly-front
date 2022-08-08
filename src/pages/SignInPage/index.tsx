@@ -30,11 +30,16 @@ export default function SignInPage() {
 
     try {
       const promise = await postLoginData(loginData);
+      const { data } = promise;
+      const user = userContext?.userData;
 
-      userContext?.setData(promise.data);
-      localStorage.setItem("userData", JSON.stringify(promise.data));
+      userContext?.setData({ ...user, token: data.token });
+      localStorage.setItem(
+        "userData",
+        JSON.stringify({ name: undefined, token: data.token })
+      );
 
-      navigate("/ranking");
+      navigate("/");
     } catch (error) {
       setLoginData({ ...loginData, password: "" });
       console.log(error);

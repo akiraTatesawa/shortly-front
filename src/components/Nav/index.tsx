@@ -38,9 +38,9 @@ export default function Nav() {
 
     return (
       <>
-        <Link to="/home">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/ranking">Ranking</Link>
-        <Link to="/home" className="logout" onClick={() => logOut()}>
+        <Link to="/ranking" className="logout" onClick={() => logOut()}>
           Sair
         </Link>
       </>
