@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 // Types
 import { LoginType } from "../../@types";
@@ -18,6 +19,19 @@ export default function SignInPage() {
   const [isSendingLoginData, setIsSendingLoginData] = useState(false);
   const userContext = useContext(UserContext);
   const navigate = useNavigate();
+
+  function errorNotify() {
+    toast.error("Email ou senha incorretos", {
+      toastId: 1,
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.target;
@@ -42,6 +56,7 @@ export default function SignInPage() {
       navigate("/");
     } catch (error) {
       setLoginData({ ...loginData, password: "" });
+      errorNotify();
       console.log(error);
     }
 
@@ -50,6 +65,7 @@ export default function SignInPage() {
 
   return (
     <main>
+      <ToastContainer />
       <Container onSubmit={(event) => sendLoginInfo(event)}>
         <Input
           name="email"
