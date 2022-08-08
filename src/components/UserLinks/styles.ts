@@ -66,6 +66,7 @@ export const Container = styled.ul`
 
     .short-url {
       font-weight: 500;
+      text-underline-offset: 2px;
     }
   }
 `;

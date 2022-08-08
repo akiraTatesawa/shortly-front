@@ -46,7 +46,7 @@ export function handleLocation(
 
   const isAuthRoute = location === routes.signup || location === routes.signin;
   const isCurrentLocationValid = routesArray.some(
-    (route) => route[1] === location
+    (route) => route[1] === location || location.startsWith("/open/")
   );
 
   if (

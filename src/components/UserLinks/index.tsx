@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 // Types
 import { APIUserUrlData } from "../../@types";
@@ -45,7 +46,11 @@ function LinkContainer({
           {url}
         </a>
       </div>
-      <div className="short-url">{shortUrl}</div>
+      <div className="short-url">
+        <Link
+          to={`/open/${shortUrl}`}
+        >{`${process.env.REACT_APP_CLIENT_URL}/open/${shortUrl}`}</Link>
+      </div>
       <div>
         <span className="visit-count">
           Quantidade de visitantes: {visitCount}

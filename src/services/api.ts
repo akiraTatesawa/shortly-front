@@ -29,6 +29,10 @@ export const postNewUrl = async (url: Url, config: Config) => {
   return api.post("/urls/shorten", url, config);
 };
 
+export const redirectToUrl = async (shortUrl: string) => {
+  return api.get(`/urls/open/${shortUrl}`);
+};
+
 export const deleteUrl = async (urlId: number, config: Config) => {
   return api.delete(`/urls/${urlId}`, config);
 };

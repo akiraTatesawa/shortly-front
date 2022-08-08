@@ -33,9 +33,7 @@ export default function NewLinkForm({ reloadLinks }: NewLinkFromProps) {
     };
 
     try {
-      const promise = await postNewUrl(data, config);
-
-      console.log(promise.data);
+      await postNewUrl(data, config);
     } catch (error) {
       console.log(error);
     }
